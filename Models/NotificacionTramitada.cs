@@ -62,7 +62,12 @@ namespace MongoAceptadaPor.Models
         [BsonRepresentation(BsonType.String)]
         public string? Id { get; private set; }
 
+        [BsonRepresentation(BsonType.String)]
+        [BsonElement("tipoMensaje")]
         public string? TipoMensaje { get; set; }
+
+        [BsonRepresentation(BsonType.Int32)]
+        [BsonElement("idTipoMensaje")]
         public int? IdTipoMensaje { get; set; }
         public string? Origen { get; set; }
         public string? Destino { get; set; }
@@ -81,6 +86,9 @@ namespace MongoAceptadaPor.Models
         public DateTime? FechaAceptacion { get; set; }
         public string? FechaEnvioTxt { get; set; }
         public string? FechaAceptacionTxt { get; set; }
+
+        [BsonRepresentation(BsonType.String)]
+        [BsonElement("usuarioAceptacion")]
         public string? UsuarioAceptacion { get; set; }
         public string? IdUsuarioAceptacion { get; set; }
         public string? UsuarioTramitacion { get; set; }
