@@ -17,7 +17,7 @@ namespace MongoAceptadaPor
             Console.WriteLine("Esto es una lista de registros generados por un bucle del tipo NotificacionTramitada");
             for (int i = 0; i < 50; i++)
             {
-                var IdLexnet = $"20231014132400{i + 1}";
+                var IdLexnet = $"202310141324{(i + 1).ToString("000")}";
                 var UsuarioAcepta = $"ERNESTO SANTOS TOSCA {(i + 1).ToString("00")}";
                 NotificacionTramitada notificacionTramitada;
                 //if (i % 2 == 0)
@@ -34,6 +34,8 @@ namespace MongoAceptadaPor
                 // notiTramColeccion.InsertOne(notificacionTramitada);
             }
 
+            FicherosCVS.GuardarListaModificadosCSV(list);
+
             //Console.WriteLine("Esto es una lista de registros leídos de la BD de MondoDB eReges de la colección NotificacionTramitada");
             //list = notiTramColeccion.Find(n => true).ToList();
             //foreach (var item in list)
@@ -41,11 +43,11 @@ namespace MongoAceptadaPor
             //    Console.WriteLine($"IdLexnet:{item.Id} UsuarioAceptacion:{item.UsuarioAceptacion}");
             //}
 
-            foreach (var item in list)
-            {
-                Console.WriteLine($"IdLexnet:{item.Id} UsuarioAceptacion:{item.UsuarioAceptacion}");
-                notiTramColeccion.ReplaceOne(nt => nt.Id == item.Id, item);
-            }
+            //foreach (var item in list)
+            //{
+            //    Console.WriteLine($"IdLexnet:{item.Id} UsuarioAceptacion:{item.UsuarioAceptacion}");
+            //    // notiTramColeccion.ReplaceOne(nt => nt.Id == item.Id, item);
+            //}
 
             Console.WriteLine("Pulse una tecla para terminar");
             Console.ReadLine();
