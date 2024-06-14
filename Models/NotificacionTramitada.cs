@@ -5,12 +5,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Libmongocrypt;
+//using Framework.Domain.Aggregates;
+//using Framework.Domain.Entities;
 
 namespace MongoAceptadaPor.Models
 {
     [Serializable]
-    public class NotificacionTramitada
+    public class NotificacionTramitada // : EntityAuditable<string>, IAggregateRoot<string>
     {
+        protected NotificacionTramitada()
+        {
+
+        }
+
         public static NotificacionTramitada Create(string id, int idTipoMensaje, string usuarioTramitacion)
         {
             return new NotificacionTramitada
@@ -58,16 +66,13 @@ namespace MongoAceptadaPor.Models
             };
         }
 
-        [BsonId]
-        [BsonRepresentation(BsonType.String)]
+        [BsonId]        
         public string? Id { get; private set; }
 
-        [BsonRepresentation(BsonType.String)]
-        [BsonElement("tipoMensaje")]
+        [BsonRepresentation(BsonType.String)]        
         public string? TipoMensaje { get; set; }
 
-        [BsonRepresentation(BsonType.Int32)]
-        [BsonElement("idTipoMensaje")]
+        [BsonRepresentation(BsonType.Int32)]        
         public int? IdTipoMensaje { get; set; }
         public string? Origen { get; set; }
         public string? Destino { get; set; }
@@ -88,7 +93,6 @@ namespace MongoAceptadaPor.Models
         public string? FechaAceptacionTxt { get; set; }
 
         [BsonRepresentation(BsonType.String)]
-        [BsonElement("usuarioAceptacion")]
         public string? UsuarioAceptacion { get; set; }
         public string? IdUsuarioAceptacion { get; set; }
         public string? UsuarioTramitacion { get; set; }
@@ -96,5 +100,15 @@ namespace MongoAceptadaPor.Models
         public string? NombreCompletoUsuarioAceptacion { get; set; }
         public string? AdjuntoPrincipal { get; set; }
         public List<string?>? AdjuntosSecundarios { get; set; }
+        public string? DescripcionAdjuntoPrincipal { get; set; }
+        public List<string?>? DescripcionAdjuntosSecundarios { get; set; }
+
+        [BsonRepresentation(BsonType.Binary)]
+        public Guid? CreatedBy { get; set; }
+        public DateTime? CreatedAt { get; set; }
+
+        [BsonRepresentation(BsonType.Binary)]
+        public Guid? LastModifiedBy { get; set; }
+        public DateTime? LastModifiedAt { get; set; }
     }
 }

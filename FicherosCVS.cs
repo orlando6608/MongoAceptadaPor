@@ -14,20 +14,18 @@ namespace MongoAceptadaPor
 {
     public static class FicherosCVS
     {
-        public record InfoModificada(string Id, string UsuarioAcepta);
+        public record InfoModificada(string? Id, string? UsuarioAcepta);
 
         public static void GuardarListaModificadosCSV(List<NotificacionTramitada> listaModificados)
         {
-            string path = @"C:\dev\MongoAceptadaPor\listaModificados.csv";
+            // string path = @"C:\dev\MongoAceptadaPor\listaModificados.csv";
+            string path = @"..\listaModificados.csv";
 
             List<InfoModificada> lista = [];
             foreach (var item in listaModificados)
             {
-                if (item.Id != null && item.UsuarioAceptacion != null)
-                {
-                    var infM = new InfoModificada(item.Id, item.UsuarioAceptacion);
-                    lista.Add(infM);
-                }
+                var infM = new InfoModificada(item.Id, item.UsuarioAceptacion ?? "null");
+                lista.Add(infM);
             }
 
             try
